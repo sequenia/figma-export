@@ -136,6 +136,7 @@ struct Params: Decodable {
             let colorsMatchRegexp: String?
             let strongMatchWithColors: Bool?
             let attributes: [TypographyAttributes]?
+            let includeFontPadding: Bool?
         }
 
         struct Images: Decodable {
