@@ -124,8 +124,8 @@ extension FigmaExportCommand {
         private func exportAndroidTextStyles(
             textStyles: [TextStyle],
             colorPairs: [AssetPair<Color>],
-            androidParams: Params.Android)
-        throws {
+            androidParams: Params.Android
+        ) throws {
             let outputPatch = URL(fileURLWithPath: androidParams.mainRes
                 .appendingPathComponent(androidParams.typography?.output ?? "").path)
 
@@ -133,10 +133,15 @@ extension FigmaExportCommand {
                 outputDirectory: outputPatch,
                 colorsMatchRegexp: androidParams.typography?.colorsMatchRegexp,
                 strongMatchWithColors: androidParams.typography?.strongMatchWithColors,
-                attributes:  androidParams.typography?.attributes
+                attributes: androidParams.typography?.attributes,
+                includeFontPadding: androidParams.typography?.includeFontPadding
             )
 
-            let files = exporter.makeTypographyFile(textStyles, colorPairs: colorPairs, dark: false)
+            let files = exporter.makeTypographyFile(
+                textStyles, 
+                colorPairs: colorPairs,
+                dark: false
+            )
 
             try fileWritter.write(files: [files])
         }
