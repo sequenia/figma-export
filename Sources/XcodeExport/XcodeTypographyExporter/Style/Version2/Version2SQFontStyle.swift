@@ -108,6 +108,7 @@ struct Version2SQFontStyle {
         print(jsonStyles)
 
         let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let jsonData = try encoder.encode(jsonStyles)
         guard let jsonString = jsonData.prettyPrintedJSONString else {
             fatalError("Parsing failed")

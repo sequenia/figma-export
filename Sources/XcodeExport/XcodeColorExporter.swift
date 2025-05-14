@@ -79,7 +79,7 @@ final public class XcodeColorExporter {
             
             let contents = XcodeAssetContents(colors: colors)
             let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
             let data = try! encoder.encode(contents)
             let fileURL = URL(string: "Contents.json")!
             files.append(FileContents(
