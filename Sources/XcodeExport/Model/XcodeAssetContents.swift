@@ -58,7 +58,7 @@ struct XcodeAssetContents: Encodable {
          preservesVectorRepresentation: Bool = false,
          templateRenderingIntent: String? = nil) {
         self.colors = nil
-        self.images = icons
+        self.images = icons.sorted(by: { $0.filename < $1.filename })
 
         self.properties = TemplateProperties(
             preservesVectorRepresentation: preservesVectorRepresentation
@@ -70,7 +70,7 @@ struct XcodeAssetContents: Encodable {
 
     init(images: [ImageData]) {
         self.colors = nil
-        self.images = images
+        self.images = images.sorted(by: { $0.filename < $1.filename })
         self.properties = nil
     }
 }
