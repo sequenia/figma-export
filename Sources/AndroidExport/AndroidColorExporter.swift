@@ -40,14 +40,16 @@ final public class AndroidColorExporter {
         xml.version = "1.0"
         xml.characterEncoding = "utf-8"
         
-        colorPairs.forEach { colorPair in
-            if dark, colorPair.dark == nil { return }
-            let name = dark ? colorPair.dark!.name : colorPair.light.name
-            let hex = dark ? colorPair.dark!.hex : colorPair.light.hex
-            let colorNode = XMLElement(name: "color", stringValue: hex)
-            colorNode.addAttribute(XMLNode.attribute(withName: "name", stringValue: name) as! XMLNode)
-            resources.addChild(colorNode)
-        }
+        colorPairs
+            .sorted(by: { $0.light.name < $1.light.name })
+            .forEach { colorPair in
+                if dark, colorPair.dark == nil { return }
+                let name = dark ? colorPair.dark!.name : colorPair.light.name
+                let hex = dark ? colorPair.dark!.hex : colorPair.light.hex
+                let colorNode = XMLElement(name: "color", stringValue: hex)
+                colorNode.addAttribute(XMLNode.attribute(withName: "name", stringValue: name) as! XMLNode)
+                resources.addChild(colorNode)
+            }
         
         return xml.xmlData(options: .nodePrettyPrint)
     }

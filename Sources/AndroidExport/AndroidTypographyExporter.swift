@@ -69,7 +69,9 @@ final public class AndroidTypographyExporter {
             colors = colorPairs
         }
         
-        textStyles.forEach { textStyle in
+        textStyles
+            .sorted(by: { $0.fontName < $1.fontName })
+            .forEach { textStyle in
             if useFontNames.contains(textStyle.fontName) { return }
             
             let style = XMLElement(name: "style")

@@ -53,7 +53,7 @@ struct FigmaExportCommand: ParsableCommand {
             ExportDimensions.self,
             GenerateConfigFile.self
         ],
-        defaultSubcommand: ExportTypography.self
+        defaultSubcommand: ExportImages.self
     )
 }
 

@@ -38,7 +38,7 @@ final public class XcodeIconsExporter: XcodeImagesExporterBase {
                 templateRenderingIntent: renderingIntent
             )
             let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
+            encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
             let data = try encoder.encode(contents)
             let fileURL = URL(string: "Contents.json")!
             files.append(FileContents(
